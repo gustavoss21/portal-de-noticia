@@ -17,7 +17,8 @@ class NoticiaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'titulo' => fake()->name(rand(5,20)),
+            'noticia' => fake()->name(rand(200,400)),
         ];
     }
 }

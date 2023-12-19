@@ -13,7 +13,9 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        //
+        $noticias = Noticia::orderByDesc('created_at')->limit(4)->get();
+        // dd($noticias);
+        return view('noticias',['noticias' => $noticias]);
     }
 
     /**

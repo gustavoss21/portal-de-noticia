@@ -14,13 +14,10 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        $noticias = [];
-        // Cache::put('site','gustavosouza.online',10);//chave, velor, tempo/s
+        $noticias = Cache::remember('primeiras_noticias',15, function(){
+            return Noticia::orderByDesc('created_at')->limit(4)->get();
+        });
 
-        // $noticias = Noticia::orderByDesc('created_at')->limit(4)->get();
-        // dd($noticias);
-        $site = Cache::get('site');
-        echo $site;
         return view('noticias',['noticias' => $noticias]);
     }
 
